@@ -117,6 +117,7 @@ DONE
 
 **Actual:** New transactions replace initial transactions, losing initial transactions
 
+DONE
 # Bug 5: Employees filter not available during loading more data
 
 _This bug has 2 wrong behaviors that will be fixed with the same solution_
