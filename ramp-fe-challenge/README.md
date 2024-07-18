@@ -105,6 +105,7 @@ DONE
 
 **Actual:** The page crashes
 
+DONE
 # Bug 4: Clicking on View More button not showing correct data
 
 **How to reproduce:**
