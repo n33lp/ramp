@@ -5,7 +5,7 @@ import { useCustomFetch } from "./useCustomFetch"
 
 // Bug 4
 export function usePaginatedTransactions(): PaginatedTransactionsResult {
-  const { fetchWithCache, loading } = useCustomFetch();
+  const { fetchWithoutCache, loading } = useCustomFetch();
   const [paginatedTransactions, setPaginatedTransactions] = useState<PaginatedResponse<Transaction[]> | null>(null);
   const [isMoreDataAvailable, setIsMoreDataAvailable] = useState<boolean>(true);  // Ensure it's typed as boolean
 
@@ -13,7 +13,7 @@ export function usePaginatedTransactions(): PaginatedTransactionsResult {
   const fetchAll = useCallback(async () => {
     if (!isMoreDataAvailable) return;  // Prevent fetching when no more data is available
 
-    const response = await fetchWithCache<PaginatedResponse<Transaction[]>, PaginatedRequestParams>(
+    const response = await fetchWithoutCache<PaginatedResponse<Transaction[]>, PaginatedRequestParams>(
       "paginatedTransactions",
       {
         page: paginatedTransactions?.nextPage ?? 0,
@@ -37,7 +37,7 @@ export function usePaginatedTransactions(): PaginatedTransactionsResult {
         nextPage: response.nextPage 
       };
     });
-  }, [fetchWithCache, paginatedTransactions, isMoreDataAvailable]);
+  }, [fetchWithoutCache, paginatedTransactions, isMoreDataAvailable]);
 
   const invalidateData = useCallback(() => {
     setPaginatedTransactions(null);
